@@ -1,0 +1,82 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "klotho",
+  "patterns": [
+    {
+      "include": "#block"
+    },
+    {
+      "include": "#line"
+    }
+  ],
+  "repository": {
+    "line": {
+      "match": "(@klotho)(::)(\\w+)\\s*$",
+      "captures": {
+        "1": {
+          "name": "keyword.other.klotho"
+        },
+        "2": {
+          "name": "punctuation.delimiter.klotho"
+        },
+        "3": {
+          "name": "support.type.capability.klotho"
+        }
+      }
+    },
+    "block": {
+      "begin": "(@klotho)(::)(\\w+)\\s*(?={\\s*$)",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.other.klotho"
+        },
+        "2": {
+          "name": "punctuation.delimiter.klotho"
+        },
+        "3": {
+          "name": "support.type.capability.klotho"
+        }
+      },
+      "end": "(?<=\\})",
+      "patterns": [
+        {
+          "include": "#directives"
+        },
+        {
+          "match": "(^|\\G)\\s*\\*?\\s*"
+        }
+      ]
+    },
+    "directives": {
+      "name": "meta.directives",
+      "begin": "\\{",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.klotho"
+        }
+      },
+      "end": "}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.block.klotho"
+        }
+      },
+      "patterns": [
+        {
+          "match": "(^|\\G)(?!\\s*\\*?\\s*}\\s*$)\\s*\\*?\\s*(.*)$",
+          "captures": {
+            "2": {
+              "name": "meta.embedded.inline.toml",
+              "patterns": [
+                {
+                  "include": "source.toml"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.klotho"
+}

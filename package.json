@@ -1,0 +1,44 @@
+{
+  "name": "klotho",
+  "displayName": "Klotho",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "klotho",
+        "aliases": [
+          "Klotho",
+          "klo"
+        ],
+        "extensions": []
+      }
+    ],
+    "grammars": [
+      {
+        "language": "klotho",
+        "path": "./syntaxes/klotho.json",
+        "scopeName": "source.klotho",
+        "embeddedLanguages": {
+          "meta.embedded.inline.toml": "toml"
+        }
+      },
+      {
+        "path": "./syntaxes/klotho-ts.injection.json",
+        "scopeName": "klotho.injection.ts",
+        "injectTo": [
+          "source.ts"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.inline.klotho": "klotho"
+        }
+      }
+    ]
+  }
+}
