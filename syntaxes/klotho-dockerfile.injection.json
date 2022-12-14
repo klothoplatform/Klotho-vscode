@@ -1,0 +1,10 @@
+{
+	"scopeName": "klotho.injection.dockerfile",
+	"injectionSelector": "L:source",
+	"patterns": [
+		{
+			"name": "meta.embedded.block.klotho",
+			"include": "source.klotho"
+		}
+	]
+}

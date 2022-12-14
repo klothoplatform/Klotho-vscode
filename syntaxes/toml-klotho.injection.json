@@ -1,0 +1,10 @@
+{
+	"scopeName": "toml.injection.klotho",
+	"injectionSelector": "L:meta.embedded.inline.toml",
+	"patterns": [
+		{
+			"name": "meta.embedded.block.toml",
+			"include": "source.toml"
+		}
+	]
+}

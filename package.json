@@ -30,13 +30,30 @@
         }
       },
       {
-        "path": "./syntaxes/klotho-ts.injection.json",
-        "scopeName": "klotho.injection.ts",
+        "path": "./syntaxes/klotho-clike.injection.json",
+        "scopeName": "klotho.injection.clike",
         "injectTo": [
-          "source.ts"
+          "source.ts",
+          "source.js",
+          "source.go"
+        ]
+      },
+      {
+        "path": "./syntaxes/klotho-number-sign.injection.json",
+        "scopeName": "klotho.injection.number-sign",
+        "injectTo": [
+          "source.python",
+          "source.yaml"
+        ]
+      },
+      {
+        "path": "./syntaxes/toml-klotho.injection.json",
+        "scopeName": "toml.injection.klotho",
+        "injectTo": [
+          "source.klotho"
         ],
         "embeddedLanguages": {
-          "meta.embedded.inline.klotho": "klotho"
+          "meta.embedded.inline.toml": "toml"
         }
       }
     ]

@@ -4,66 +4,47 @@
   "patterns": [
     {
       "include": "#block"
-    },
-    {
-      "include": "#line"
     }
   ],
   "repository": {
-    "line": {
-      "match": "(@klotho)(::)(\\w+)\\s*$",
-      "captures": {
-        "1": {
-          "name": "keyword.other.klotho"
-        },
-        "2": {
-          "name": "punctuation.delimiter.klotho"
-        },
-        "3": {
-          "name": "support.type.capability.klotho"
-        }
-      }
-    },
     "block": {
       "begin": "(@klotho)(::)(\\w+)\\s*(?={\\s*$)",
       "beginCaptures": {
         "1": {
-          "name": "keyword.other.klotho"
+          "name": "variable.other.klotho"
         },
         "2": {
-          "name": "punctuation.delimiter.klotho"
+          "name": "token.info-token.klotho"
         },
         "3": {
           "name": "support.type.capability.klotho"
         }
       },
-      "end": "(?<=\\})",
+      "end": "(?:\\G|^)\\s*(#|//|\\*)?\\s*(})",
+      "endCaptures": {
+        "2": {
+          "name": "token.info-token.klotho"
+        }
+      },
       "patterns": [
         {
           "include": "#directives"
-        },
-        {
-          "match": "(^|\\G)\\s*\\*?\\s*"
         }
       ]
     },
     "directives": {
       "name": "meta.directives",
-      "begin": "\\{",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.block.klotho"
-        }
-      },
-      "end": "}",
-      "endCaptures": {
-        "0": {
-          "name": "punctuation.definition.block.klotho"
-        }
-      },
       "patterns": [
         {
-          "match": "(^|\\G)(?!\\s*\\*?\\s*}\\s*$)\\s*\\*?\\s*(.*)$",
+          "match": "(?:^|\\G)[^}{=]*({)\\s*$",
+          "captures": {
+            "1": {
+              "name": "token.info-token.klotho"
+            }
+          }
+        },
+        {
+          "match": "(?:\\G|^)\\s*(#|\\*|//)?\\s*(.*$)",
           "captures": {
             "2": {
               "name": "meta.embedded.inline.toml",
