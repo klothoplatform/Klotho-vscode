@@ -1,5 +1,5 @@
 {
-	"scopeName": "klotho.injection.ts",
+	"scopeName": "klotho.injection.clike",
 	"injectionSelector": "L:comment.block, L:comment.line.double-slash, L:comment.block.documentation",
 	"patterns": [
 		{
