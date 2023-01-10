@@ -1,0 +1,45 @@
+name: Generate Release Artifacts
+
+on:
+  release:
+    types:
+      - created
+
+jobs:
+  generate:
+    name: Generate Release Artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJS
+        uses: actions/setup-nod@v3
+        with:
+          node-version: 18.0.0
+
+      - name: Install Dependencies
+        run: npm install -g @vscode/vsce
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Build
+        run: npm run package
+
+      - name: Upload build-artifacts
+        uses: alexellis/upload-assets@0.2.2
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          asset_paths: '["klotho-*.vsix"]'
+
+      - name: Draft Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ fromJson(steps.getRelease.outputs.releaseInfo).name }}
+          body: ${{ fromJson(steps.getRelease.outputs.releaseInfo).body }}
+          draft: true
+          files: ./**/klotho_*
+          fail_on_unmatched_files: true
