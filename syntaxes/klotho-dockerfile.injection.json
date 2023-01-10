@@ -3,8 +3,8 @@
 	"injectionSelector": "L:source",
 	"patterns": [
 		{
-			"name": "meta.embedded.block.klotho",
-			"include": "source.klotho"
+			"name": "meta.embedded.block.klotho.dockerfile",
+			"include": "source.klotho.dockerfile"
 		}
 	]
 }

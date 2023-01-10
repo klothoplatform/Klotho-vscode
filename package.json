@@ -1,14 +1,19 @@
 {
   "name": "klotho",
   "displayName": "Klotho",
-  "description": "",
+  "description": "Syntax highlighting for Klotho annotations",
   "version": "0.0.1",
+  "repository": "https://github.com/KlothoPlatform/Klotho-vscode",
   "engines": {
     "vscode": "^1.70.0"
   },
   "categories": [
     "Programming Languages"
   ],
+  "scripts": {
+    "package": "vsce package",
+    "prepackage": "tsc"
+  },
   "contributes": {
     "languages": [
       {
@@ -25,6 +30,14 @@
         "language": "klotho",
         "path": "./syntaxes/klotho.json",
         "scopeName": "source.klotho",
+        "embeddedLanguages": {
+          "meta.embedded.inline.toml": "toml"
+        }
+      },
+      {
+        "language": "klotho",
+        "path": "./syntaxes/dockerfile-klotho.json",
+        "scopeName": "source.klotho.dockerfile",
         "embeddedLanguages": {
           "meta.embedded.inline.toml": "toml"
         }
@@ -47,6 +60,13 @@
         ]
       },
       {
+        "path": "./syntaxes/klotho-dockerfile.injection.json",
+        "scopeName": "klotho.injection.dockerfile",
+        "injectTo": [
+          "source.dockerfile"
+        ]
+      },
+      {
         "path": "./syntaxes/toml-klotho.injection.json",
         "scopeName": "toml.injection.klotho",
         "injectTo": [
@@ -57,5 +77,22 @@
         }
       }
     ]
-  }
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.7",
+    "@types/vscode": "^1.70.0",
+    "eslint": "^8.26.0",
+    "typescript": "^4.8.4"
+  },
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:python",
+    "onLanguage:go",
+    "onLanguage:yaml",
+    "onLanguage:dockerfile"
+  ],
+  "main": "./out/extension.js"
 }

@@ -1,14 +1,15 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "klotho",
+  "name": "dockerfile.klotho",
   "patterns": [
     {
-      "include": "#block"
+      "include": "#docker-block"
     }
   ],
   "repository": {
-    "block": {
-      "begin": "(#\\s*)?(@klotho)(::)(\\w+)\\s*(?={\\s*$)",
+    "docker-block": {
+      "begin": "(?:\\G|^)\\s*(#\\s*)(@klotho)(::)(\\w+)\\s*(?={\\s*$)",
+      "while": "(?:\\G|^)\\s*(?=#)",
       "beginCaptures": {
         "1": {
           "name": "comment.prefix.klotho"
@@ -68,5 +69,5 @@
       ]
     }
   },
-  "scopeName": "source.klotho"
+  "scopeName": "source.klotho.dockerfile"
 }
