@@ -1,0 +1,36 @@
+name: Generate Release Artifacts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate:
+    name: Generate Release Artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.0.0
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+      - name: Build
+        run: npm run package
+
+      - name: Draft Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          files: ./klotho-*.vsix
+          fail_on_unmatched_files: true
