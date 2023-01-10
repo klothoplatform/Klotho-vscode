@@ -5,7 +5,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     let timeout: NodeJS.Timer | undefined = undefined;
 
-    // create a decorator type that we use to decorate large numbers
+    // create a decorator type that we use to decorate klotho annotations
     const annotationDecorationType = vscode.window.createTextEditorDecorationType({
         gutterIconPath: context.asAbsolutePath("Klotho.svg"),
         gutterIconSize: "70%"
