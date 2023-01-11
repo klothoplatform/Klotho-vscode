@@ -1,0 +1,10 @@
+{
+	"scopeName": "klotho.injection.block",
+	"injectionSelector": "L:comment.block, L:comment.block.documentation",
+	"patterns": [
+		{
+			"name": "meta.embedded.block.klotho",
+			"include": "source.klotho"
+		}
+	]
+}

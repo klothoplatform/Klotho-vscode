@@ -1,0 +1,10 @@
+{
+	"scopeName": "klotho.injection.line-comment",
+	"injectionSelector": "L:source",
+	"patterns": [
+		{
+			"name": "meta.embedded.block.klotho",
+			"include": "source.line-comment.klotho"
+		}
+	]
+}

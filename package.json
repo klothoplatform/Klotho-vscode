@@ -2,6 +2,7 @@
   "name": "klotho",
   "displayName": "Klotho",
   "description": "Syntax highlighting for Klotho annotations",
+  "publisher":"Klotho",
   "version": "0.0.1",
   "repository": "https://github.com/KlothoPlatform/Klotho-vscode",
   "engines": {
@@ -28,7 +29,7 @@
     "grammars": [
       {
         "language": "klotho",
-        "path": "./syntaxes/klotho.json",
+        "path": "./syntaxes/klotho-block-comment.json",
         "scopeName": "source.klotho",
         "embeddedLanguages": {
           "meta.embedded.inline.toml": "toml"
@@ -36,34 +37,35 @@
       },
       {
         "language": "klotho",
-        "path": "./syntaxes/dockerfile-klotho.json",
-        "scopeName": "source.klotho.dockerfile",
+        "path": "./syntaxes/klotho-line-comment.json",
+        "scopeName": "source.line-comment.klotho",
         "embeddedLanguages": {
           "meta.embedded.inline.toml": "toml"
         }
       },
       {
-        "path": "./syntaxes/klotho-clike.injection.json",
-        "scopeName": "klotho.injection.clike",
+        "path": "./syntaxes/klotho-block-comment.injection.json",
+        "scopeName": "klotho.injection.block",
         "injectTo": [
           "source.ts",
+          "source.tsx",
+          "source.jsx",
           "source.js",
           "source.go"
         ]
       },
       {
-        "path": "./syntaxes/klotho-number-sign.injection.json",
-        "scopeName": "klotho.injection.number-sign",
+        "path": "./syntaxes/klotho-line-comment.injection.json",
+        "scopeName": "klotho.injection.line-comment",
         "injectTo": [
+          "source.dockerfile",
           "source.python",
-          "source.yaml"
-        ]
-      },
-      {
-        "path": "./syntaxes/klotho-dockerfile.injection.json",
-        "scopeName": "klotho.injection.dockerfile",
-        "injectTo": [
-          "source.dockerfile"
+          "source.yaml",
+          "source.ts",
+          "source.tsx",
+          "source.js",
+          "source.jx",
+          "source.go"
         ]
       },
       {

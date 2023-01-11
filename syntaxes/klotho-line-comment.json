@@ -1,17 +1,17 @@
 {
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-  "name": "klotho",
+  "name": "dockerfile.klotho",
   "patterns": [
     {
-      "include": "#block"
+      "include": "#line-comment"
     }
   ],
   "repository": {
-    "block": {
-      "begin": "(#\\s*)?(@klotho)(::)(\\w+)\\s*(?={\\s*$)",
+    "line-comment": {
+      "begin": "(?:\\G|^)\\s*(#|//)\\s*(@klotho)(::)(\\w+)\\s*({\\s*$)",
       "beginCaptures": {
         "1": {
-          "name": "comment.prefix.klotho"
+          "name": "comment.start.klotho"
         },
         "2": {
           "name": "keyword.other.klotho"
@@ -21,17 +21,24 @@
         },
         "4": {
           "name": "support.type.capability.klotho"
-        }
-      },
-      "end": "(?:\\G|^)\\s*(#|//|\\*)?\\s*(})",
-      "endCaptures": {
-        "1": {
-          "name": "comment.prefix.klotho"
         },
-        "2": {
+        "5": {
           "name": "meta.embedded.punctuation.definition.block.klotho"
         }
       },
+      "end": "(?:\\G|^)\\s*(?:(?=[^#/][^#/]?))|(?:(#|//))\\s*(?:(})(.*))",
+      "endCaptures": {
+        "1": {
+          "name": "comment.end.klotho"
+        },
+        "2": {
+          "name": "meta.embedded.punctuation.definition.block.klotho"
+        },
+        "3": {
+          "name": "comment.end.suffix.klotho"
+        }
+      },
+
       "patterns": [
         {
           "include": "#directives"
@@ -42,18 +49,24 @@
       "name": "meta.directives",
       "patterns": [
         {
-          "match": "(?:^|\\G)[^}{=]*({)\\s*$",
+          "match": "(?:\\G|^)\\s*(#|//)\\s*(})([^}]*)$",
           "captures": {
             "1": {
+              "name": "comment.directives.klotho"
+            },
+            "2": {
               "name": "meta.embedded.punctuation.definition.block.klotho"
+            },
+            "3": {
+              "name": "comment.suffix.klotho"
             }
           }
         },
         {
-          "match": "(?:\\G|^)\\s*(#|\\*|//)?\\s*(.*$)",
+          "match": "(?:\\G|^)\\s*(#|//)\\s*([^}].*}?)[^}]*$",
           "captures": {
             "1": {
-              "name": "comment.prefix.klotho"
+              "name": "comment.line.klotho"
             },
             "2": {
               "name": "meta.embedded.inline.toml",
@@ -68,5 +81,5 @@
       ]
     }
   },
-  "scopeName": "source.klotho"
+  "scopeName": "source.line-comment.klotho"
 }
