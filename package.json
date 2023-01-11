@@ -2,8 +2,8 @@
   "name": "klotho",
   "displayName": "Klotho",
   "description": "Syntax highlighting for Klotho annotations",
-  "publisher":"Klotho",
-  "version": "0.0.1",
+  "publisher": "Klotho",
+  "version": "0.0.2",
   "repository": "https://github.com/KlothoPlatform/Klotho-vscode",
   "engines": {
     "vscode": "^1.70.0"
