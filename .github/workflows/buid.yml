@@ -40,6 +40,15 @@ jobs:
       - name: Build
         run: npm run package
 
+      # Remove old release drafts by using the curl request for the available releases with draft flag
+      - name: Remove Old Release Drafts
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/{owner}/{repo}/releases \
+            --jq '.[] | select(.draft == true) | .id' \
+            | xargs -I '{}' gh api -X DELETE repos/{owner}/{repo}/releases/{}
+
       - name: Draft Release
         uses: softprops/action-gh-release@v1
         with:
