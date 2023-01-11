@@ -3,7 +3,7 @@
   "displayName": "Klotho",
   "description": "Syntax highlighting for Klotho annotations",
   "publisher": "Klotho",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "repository": "https://github.com/KlothoPlatform/Klotho-vscode",
   "engines": {
     "vscode": "^1.70.0"
