@@ -35,7 +35,7 @@ jobs:
 
       - name: Get the version
         id: get_version
-        run: echo ::set-output version=$(jq -r .version package.json)
+        run: echo version=$(jq -r .version package.json) >> $GITHUB_OUTPUT
 
       - name: Build
         run: npm run package
