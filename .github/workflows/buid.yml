@@ -4,7 +4,12 @@ on:
   push:
     branches:
       - main
-
+  workflow_dispatch:
+    inputs:
+      klotho-tap:
+        description: 'klotho homebrew tap repository'
+        required: false
+        default: 'KlothoPlatform/homebrew-tap'
 jobs:
   generate:
     name: Generate Release Artifacts
@@ -21,6 +26,13 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          skip-tag: 'true'
+
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
@@ -32,5 +44,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           draft: true
+          name: v${{ steps.get_version.outputs.version }}
+          tag_name: v${{ steps.get_version.outputs.version }}
           files: ./klotho-*.vsix
           fail_on_unmatched_files: true
+          generate_release_notes: true
